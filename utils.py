@@ -1,7 +1,6 @@
 import numpy as np
 import sympy
 import matplotlib.pyplot as plt
-import pickle
 
 # DO NOT CHANGE
 
@@ -41,6 +40,8 @@ def distance_travelled_before_interaction(mu):
 def get_pdf(energy_keV):
     """ the pdf in a function
     """
+    mec2 = 5.11e5 # rest energy electron eV
+    kappa = lambda E: E * 1000/mec2  # a function that calculates kappa from an incoming energy E in keV
     tau_s = sympy.symbols('tau', real=True, positive=True)  # ratio of the scattered and incoming energy Ec/E
     k_s = sympy.symbols('kappa', real=True, positive=True)  # ratio of the incoming energy and the electron rest energ
     pdf_symp = 1 / tau_s ** 2 + (k_s ** 2 - 2 * k_s - 2) / tau_s + (2 * k_s + 1) + k_s ** 2 * tau_s
@@ -120,7 +121,3 @@ class Image:
         if self.print:
             print('co: ', co[0], ', ', co[1], "added at [", pix_idx, ',', pix_idy, ']')
         return
-
-image_class = Image
-with open('fcts_share.pkl', 'wb') as f:
-    pickle.dump(image_class,f)
