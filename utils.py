@@ -27,7 +27,7 @@ def distance_travelled_before_interaction(mu):
     input: cross section for compton scatter [1/cm]
     returns: sampled distance travelled before interaction [cm]
     """
-    xi = np.random.random(1)  # one random value between [0,1]
+    xi = np.random.random()  # one random value between [0,1]
     s = -1/mu * np.log(1-xi)
     return s
 
@@ -70,7 +70,7 @@ def rejection_sampling(min_x, max_x, fl_x, print_val=False):
 
 
 def get_phi():
-    xi = np.random.random(1)
+    xi = np.random.random()
     phi = np.pi * 2 * xi
     return phi
 
